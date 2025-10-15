@@ -32,7 +32,11 @@ int main() {
     int size = 0;  // Actual number of records read
 
     // TODO: Step 3 - Call readTemperatures() to load data from file
-
+    readTemperatures(records, size);
+    if (size == 0) {
+        cout << "No temperature records available." << endl;
+        return 1;
+    }
     // TODO: Step 4 - Print the temperatures
     cout << "Temperature" << endl;
     cout << setw(5) << "Day" << setw(10) << "Temp" << endl;
