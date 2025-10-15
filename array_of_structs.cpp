@@ -19,7 +19,7 @@ struct TemperatureRecord {
 const int MAX_DAYS = 31;
 
 // Function Prototypes
-void readTemperatures(TemperatureRecord records[], int numRecords); // TODO: Fix the parameters
+void readTemperatures(TemperatureRecord records[], int &size); // TODO: Fix the parameters
 void printTemperatures(const TemperatureRecord records[], int numRecords);
 TemperatureRecord findMin(const TemperatureRecord records[], int numRecords);
 TemperatureRecord findMax(const TemperatureRecord records[], int numRecords);
@@ -52,7 +52,7 @@ int main() {
 
 // TODO: Step 6 - Implement readTemperatures()
 // Read from "temps.txt" and store data in the array
-void readTemperatures(TemperatureRecord records[], int& size) {
+void readTemperatures(TemperatureRecord records[], int &size) {
     ifstream infile;
     infile.open("temps.txt");
     if (!infile) {
@@ -83,12 +83,34 @@ void printTemperatures(const TemperatureRecord records[], int numRecord) {
 }
 // TODO: Step 8 - Implement findMin()
 // Return the TemperatureRecord with the lowest temperature
-//TemperatureRecord findMin(const TemperatureRecord records[], int numRecords) {
-    
+TemperatureRecord findMin(const TemperatureRecord records[], int numRecord) {
+    TemperatureRecord minRecord = records[0];
+    for (int i = 1; i < numRecord; i++) {
+        if (records[i].temperature < minRecord.temperature) {
+            minRecord = records[i];
+        }
+    }
+    return minRecord;
 }
 // TODO: Step 9 - Implement findMax()
 // Return the TemperatureRecord with the highest temperature
+TemperatureRecord findMax(const TemperatureRecord records[], int numRecord) {
+    TemperatureRecord maxRecord = records[0];
+    for (int i = 1; i < numRecord; i++) {
+        if (records[i].temperature > maxRecord.temperature) {
+            maxRecord = records[i];
+        }
+    }
+    return maxRecord;
+}
 
 // TODO: Step 10 - Implement findAverage()
 // Compute and return the average temperature
+double findAverage(const TemperatureRecord records[], int numRecord) {
+    int sum = 0;
+    for (int i = 0; i < numRecord; i++) {
+        sum += records[i].temperature;
+    }
+    return static_cast<double>(sum) / numRecord;
+}
 
