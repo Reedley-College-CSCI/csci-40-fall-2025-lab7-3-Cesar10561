@@ -31,28 +31,24 @@ int main() {
     int size = 0;  // Actual number of records read
 
     // TODO: Step 3 - Call readTemperatures() to load data from file
-    void readTemperatures(TemperatureRecord records[], int& size) {
-    ifstream infile;
-    infile.open("temps.txt");
+    readTemperatures(records, size);
 
-    if (!infile) {
-        cout << "Error ! File not found." << endl;
-        size = 0;
-        return;
-    }
-    while (infile >> records[size].day >> records[size].temperature) {
-        size++;
-        if (size >= MAX_DAYS)
-            break;
-    }
-    infile.close();
-}
     // TODO: Step 4 - Print the temperatures
+    cout << "Temperature" << endl;
+    cout << "Day and Temp" << endl;
+    printTemperatures(records, size);
 
     // TODO: Step 5 - Compute and display min, max, and average temperature
+    TemperatureRecord min = findMin(records, size);
+    TemperatureRecord max = findMax(records, size); 
+    double avgTemp = findAverage(records, size);
 
+    cout << "The minimum temperature is: " << min.temperature << " on day " << min.day << endl;
+    cout << "The maximum temperature is: " << max.temperature << "on day " << max.day << endl;
+    cout << "The average temperature is: " << avgTemp << endl;
     return 0;
 }
+    
 
 // TODO: Step 6 - Implement readTemperatures()
 // Read from "temps.txt" and store data in the array
