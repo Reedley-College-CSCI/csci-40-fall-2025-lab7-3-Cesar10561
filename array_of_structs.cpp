@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 // TODO: Step 1 - Define the struct TemperatureRecord
@@ -31,15 +32,15 @@ int main() {
     int size = 0;  // Actual number of records read
 
     // TODO: Step 3 - Call readTemperatures() to load data from file
-    
+
     // TODO: Step 4 - Print the temperatures
     cout << "Temperature" << endl;
-    cout << "Day and Temp" << endl;
+    cout << setw(5) << "Day" << setw(10) << "Temp" << endl;
     printTemperatures(records, size);
 
     // TODO: Step 5 - Compute and display min, max, and average temperature
     TemperatureRecord min = findMin(records, size);
-    TemperatureRecord max = findMax(records, size); 
+    TemperatureRecord max = findMax(records, size);
     double avgTemp = findAverage(records, size);
 
     cout << "The minimum temperature is: " << min.temperature << " on day " << min.day << endl;
@@ -47,17 +48,44 @@ int main() {
     cout << "The average temperature is: " << avgTemp << endl;
     return 0;
 }
-    
+
 
 // TODO: Step 6 - Implement readTemperatures()
 // Read from "temps.txt" and store data in the array
+void readTemperatures(TemperatureRecord records[], int& size) {
+    ifstream infile;
+    infile.open("temps.txt");
+    if (!infile) {
+        cout << "Error! File not found." << endl;
+        size = 0;
+        return;
+    }
+
+    size = 0;
+    while (infile >> records[size].day >> records[size].temperature) {
+        size++;
+        if (size >= MAX_DAYS)
+            break;
+    }
+
+    infile.close();
+}
 
 // TODO: Step 7 - Implement printTemperatures()
 // Print all stored temperatures in a formatted table
+void printTemperatures(const TemperatureRecord records[], int numRecord) {
+    for (int i = 0; i < numRecord; i++) {
+        cout << setw(5) << records[i].day
+            << setw(10) << records[i].temperature << endl;
+}
 
+    
+}
 // TODO: Step 8 - Implement findMin()
 // Return the TemperatureRecord with the lowest temperature
-
+//TemperatureRecord findMin(const TemperatureRecord records[], int numRecords) {
+    
+}
 // TODO: Step 9 - Implement findMax()
 // Return the TemperatureRecord with the highest temperature
 
