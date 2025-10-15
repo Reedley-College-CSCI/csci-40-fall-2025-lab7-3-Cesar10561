@@ -31,8 +31,7 @@ int main() {
     int size = 0;  // Actual number of records read
 
     // TODO: Step 3 - Call readTemperatures() to load data from file
-    readTemperatures(records, size);
-
+    
     // TODO: Step 4 - Print the temperatures
     cout << "Temperature" << endl;
     cout << "Day and Temp" << endl;
@@ -64,3 +63,4 @@ int main() {
 
 // TODO: Step 10 - Implement findAverage()
 // Compute and return the average temperature
+
