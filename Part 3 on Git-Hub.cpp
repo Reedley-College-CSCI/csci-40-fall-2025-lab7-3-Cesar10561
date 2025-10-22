@@ -47,8 +47,9 @@ int main() {
     TemperatureRecord max = findMax(records, size);
     double avgTemp = findAverage(records, size);
 
-    cout << "The minimum temperature is: " << min.temperature << " on day " << min.day << endl;
-    cout << "The maximum temperature is: " << max.temperature << "on day " << max.day << endl;
+    
+    cout << "The Lowest Temperature is: " << min.temperature << "°F on Day: " << min.day << endl;
+    cout << "The Highest temperature is: " << max.temperature << " °F on Day: " << max.day << endl;
     cout << "The average temperature is: " << avgTemp << endl;
     return 0;
 }
